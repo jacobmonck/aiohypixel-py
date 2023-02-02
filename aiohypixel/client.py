@@ -34,20 +34,6 @@ BASE_URL = "https://api.hypixel.net"
 
 
 class AIOHypixelClient:
-    """A client that makes HTTP requests to Hypixel's API.
-
-    Attributes
-    ----------
-    token : str
-        The API key you want to use to make requests.
-    loop : Optional[AbstractEventLoop]
-        The AsyncIO event loop you would like to client to use, if none is
-        provided the client will call get_event_loop().
-    session : Optional[ClientSession]
-        The AIOHTTP ClientSession you would like to use, if none is provided
-        the client will create a session for you.
-    """
-
     def __init__(
         self,
         token: str,
@@ -55,6 +41,19 @@ class AIOHypixelClient:
         loop: Optional[AbstractEventLoop] = None,
         session: Optional[ClientSession] = None
     ) -> None:
+        """A client that makes HTTP requests to Hypixel's API.
+
+        Parameters
+        ----------
+        token : str
+            The API key you want to use to make requests.
+        loop : Optional[AbstractEventLoop]
+            The AsyncIO event loop you would like to client to use, if none is
+            provided the client will call get_event_loop().
+        session : Optional[ClientSession]
+            The AIOHTTP ClientSession you would like to use, if none is provided
+            the client will create a session for you.
+        """
         self.token = token
         self.loop = loop or get_event_loop()
         self._session = session or ClientSession()

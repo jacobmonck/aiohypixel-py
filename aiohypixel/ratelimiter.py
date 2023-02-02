@@ -26,18 +26,17 @@ from asyncio import AbstractEventLoop, Event
 
 
 class RateLimiter:
-    """A ratelimit handler for API requests to avoid 429's.
-
-    Attributes
-    ----------
-    loop : AbstractEventLoop
-        The asyncio event loop the rate limiter will use.
-    """
-
     def __init__(
         self,
         loop: AbstractEventLoop,
     ) -> None:
+        """A ratelimit handler for API requests to avoid 429's.
+
+        Parameters
+        ----------
+        loop : AbstractEventLoop
+            The asyncio event loop the rate limiter will use.
+        """
         self.loop = loop
 
         self.lock = Event()

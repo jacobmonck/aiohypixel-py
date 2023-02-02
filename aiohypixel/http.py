@@ -44,13 +44,6 @@ ResponseFormat = Literal["raw", "text", "json", "auto", "response"]
 
 
 class HTTPClient:
-    """An HTTP client for making requests to the Hypixel API.
-
-    Attributes
-    ----------
-
-    """
-
     BASE_URL: ClassVar[str] = "https://api.hypixel.net"
     ERRORS: ClassVar[dict[Union[int, str], Exception]] = {
         "_": HTTPException,
@@ -67,6 +60,22 @@ class HTTPClient:
         session: Optional[ClientSession] = None,
         retry_attempts: int = 3,
     ) -> None:
+        """An HTTP client for making requests to the Hypixel API.
+
+        Parameters
+        ----------
+        token : str
+            The API token you want the client to use.
+        loop : AbstractEventLoop
+            The event loop the client will use.
+        session : Optional[ClientSession]
+            The ClientSession the library will use, if none is provided it will use
+            create one.
+        retry_attempts : int = 3
+            The amount of attempts the client will attempt to make if it fails to
+            make a request.
+        """
+
         self.session = session or ClientSession(loop=loop)
         self.retry_attempts = retry_attempts
 
